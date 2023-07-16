@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -29,7 +30,8 @@ public class DrugstoreWarehouseDbContextFactory : IDesignTimeDbContextFactory<Dr
     {
         var builder = new ConfigurationBuilder()
             .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../DrugstoreWarehouse.DbMigrator/"))
-            .AddJsonFile("appsettings.json", optional: false);
+            .AddJsonFile("appsettings.json", optional: false)
+            .AddUserSecrets(System.Reflection.Assembly.Load("DrugstoreWarehouse.DbMigrator"));
 
         return builder.Build();
     }
