@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DrugstoreWarehouse.Batches;
+using DrugstoreWarehouse.Drugstores;
+using DrugstoreWarehouse.Products;
+using DrugstoreWarehouse.Warehouses;
+using Microsoft.EntityFrameworkCore;
+using System;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -53,6 +58,12 @@ public class DrugstoreWarehouseDbContext :
 
     #endregion
 
+    public DbSet<Batch> Batches { get; set; }
+    public DbSet<Drugstore> Drugstores { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Warehouse> Warehouses { get; set; }
+
+
     public DrugstoreWarehouseDbContext(DbContextOptions<DrugstoreWarehouseDbContext> options)
         : base(options)
     {
@@ -76,11 +87,37 @@ public class DrugstoreWarehouseDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(DrugstoreWarehouseConsts.DbTablePrefix + "YourEntities", DrugstoreWarehouseConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.Entity<Batch>(b =>
+        {
+            b.ToTable(
+                "Batches", 
+                t => t.HasCheckConstraint("CK_Batches_Quantity_Range", $"\"Quantity\" >= {BatchConsts.MinQuantity} AND \"Quantity\" <= {BatchConsts.MaxQuantity}")
+                );
+            b.HasOne(x => x.Product).WithMany().HasForeignKey(x => x.ProductId).OnDelete(DeleteBehavior.Cascade); 
+        });
+
+        builder.Entity<Drugstore>(b =>
+        {
+            b.ToTable("Drugstores");
+            b.Property(x => x.Name).HasMaxLength(DrugstoreConsts.MaxNameLength).IsRequired();
+            b.Property(x => x.Address).HasMaxLength(DrugstoreConsts.MaxAdressLength).IsRequired();
+            b.Property(x => x.TelNumber).HasMaxLength(DrugstoreConsts.MaxTelNumberLength).IsRequired();
+            b.HasMany(x => x.Warehouses).WithOne(y => y.Drugstore).HasForeignKey(y => y.DrugstoreId).OnDelete(DeleteBehavior.Cascade);
+        });
+
+        builder.Entity<Product>(b =>
+        {
+            b.ToTable("Products");
+            b.Property(x => x.Name).HasMaxLength(ProductConsts.MaxNameLength).IsRequired();
+        });
+
+        builder.Entity<Warehouse>(b =>
+        {
+            b.ToTable("Warehouses");
+            b.Property(x => x.Name).HasMaxLength(WarehouseConsts.MaxNameLength).IsRequired();
+            b.HasMany(x => x.Batches).WithOne(y => y.Warehouse).HasForeignKey(y => y.WarehouseId).OnDelete(DeleteBehavior.Cascade); 
+        });
+
+
     }
 }

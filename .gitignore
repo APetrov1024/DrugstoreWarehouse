@@ -254,15 +254,3 @@ paket-files/
 # Client libs 
 **/wwwroot/libs/
 
-# BookStore
-abpTutorials/Acme.BookStore/src/Acme.BookStore.Web/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.Web.Host/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.IdentityServer/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.HttpApi.Host/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.HttpApi.HostWithIds/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.DbMigrator/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.Blazor.Server/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.Blazor.Server.Tiered/Logs/*
-abpTutorials/Acme.BookStore/src/Acme.BookStore.Web/appsettings.json
-abpTutorials/Acme.BookStore/src/Acme.BookStore.DbMigrator/appsettings.json
-
