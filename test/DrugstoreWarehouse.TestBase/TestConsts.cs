@@ -50,18 +50,18 @@ namespace DrugstoreWarehouse
 
             public static class Warehouses
             {
-                public static int count = 3;
+                public static int Count = 3;
                 public static class Warehouse1
                 {
                     public const string Name = "WH 1";
                 }
                 public static class Warehouse2
                 {
-                    public const string Name = "WH 1";
+                    public const string Name = "WH 2";
                 }
                 public static class Warehouse3
                 {
-                    public const string Name = "WH 1";
+                    public const string Name = "WH 3";
                 }
             }
 
