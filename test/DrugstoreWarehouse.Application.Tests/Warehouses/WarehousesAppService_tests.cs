@@ -36,7 +36,7 @@ namespace DrugstoreWarehouse.Warehouses
         }
 
         [Fact]
-        public async Task Initial_Data_Should_Contain_Drugstore1()
+        public async Task Initial_Data_Should_Contain_Warehouse1()
         {
             //act
             var warehouses = await _warehousesAppService.GetListAsync();

@@ -17,7 +17,7 @@ using JetBrains.Annotations;
 
 namespace DrugstoreWarehouse.Batches
 {
-    public class BatchesAppService : DrugstoreWarehouseAppService, IBathcesAppService
+    public class BatchesAppService : DrugstoreWarehouseAppService, IBatchesAppService
     {
         private readonly IRepository<Batch, Guid> _batchesRepository;
         private readonly IRepository<Warehouse, Guid> _warehousesRepository;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DrugstoreWarehouse.Batches
 {
-    public interface IBathcesAppService
+    public interface IBatchesAppService
     {
         Task<BatchDto> GetAsync(Guid id);
         Task<List<BatchDto>> GetListAsync(Guid warehouseId);
