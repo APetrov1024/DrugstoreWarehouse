@@ -80,7 +80,7 @@ namespace DrugstoreWarehouse.Batches
 
         private async Task<bool> CheckProductExists(Guid productId, bool throwNotFound = true)
         {
-            var result = await _warehousesRepository.AnyAsync(x => x.Id == productId);
+            var result = await _productsRepository.AnyAsync(x => x.Id == productId);
             if (!result && throwNotFound)
             {
                 throw new UserFriendlyException(L[LocalizerKeys.Errors.ProductNotFound]);
@@ -93,7 +93,7 @@ namespace DrugstoreWarehouse.Batches
             await CheckProductExists(dto.ProductId);
             await CheckWarehouseExists(dto.WarehouseId);
             var batch = ObjectMapper.Map<CreateUpdateBatchDto, Batch>(dto);
-            batch = await _batchesRepository.InsertAsync(batch);
+            batch = await _batchesRepository.InsertAsync(batch, autoSave: true);
             batch = await GetDetailedBatchAsync(batch.Id); // чтобы подгрузить зависимые сущности
             return ObjectMapper.Map<Batch, BatchDto>(batch);
         }
