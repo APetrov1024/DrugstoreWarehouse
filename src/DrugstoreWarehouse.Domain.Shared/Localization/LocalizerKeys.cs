@@ -8,10 +8,21 @@ namespace DrugstoreWarehouse.Localization
     {
         public static class Errors
         {
-            public const string ProductNotFound = "Errors:ProductNotFound";
-            public const string WarehouseNotFound = "Errors:WarhouseNotFound";
-            public const string BatchNotFound = "Errors:BatchNotFound";
-            public const string DrugstoreNotFound = "Errors:DrugstoreNotFound";
+            public const string Prefix = "Errors";
+            public const string ProductNotFound = Prefix + ":ProductNotFound";
+            public const string WarehouseNotFound = Prefix + ":WarhouseNotFound";
+            public const string BatchNotFound = Prefix + ":BatchNotFound";
+            public const string DrugstoreNotFound = Prefix + ":DrugstoreNotFound";
         }
+        public static class Menu
+        {
+            public const string Prefix = "Menu";
+            public const string Drugstores = Prefix + ":Drugstores";
+            public const string Products = Prefix + ":Products";
+            public const string Warehouses = Prefix + ":Warehouses";
+
+        }
+
+
     }
 }

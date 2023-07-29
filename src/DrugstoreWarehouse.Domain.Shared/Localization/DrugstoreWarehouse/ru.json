@@ -5,6 +5,9 @@
     "Errors:ProductNotFound": "Товар не найден!",
     "Errors:WarhouseNotFound": "Склад не найден!",
     "Errors:BatchNotFound": "Партия не найдена!",
-    "Errors:DrugstoreNotFound": "Аптека не найдена!"
+    "Errors:DrugstoreNotFound": "Аптека не найдена!",
+    "Menu:Drugstores": "Аптеки",
+    "Menu:Products": "Товары",
+    "Menu:Warehouses": "Склады"
   }
 }

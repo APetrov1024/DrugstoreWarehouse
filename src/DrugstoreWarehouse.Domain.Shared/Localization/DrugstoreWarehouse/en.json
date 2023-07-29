@@ -5,6 +5,9 @@
     "Errors:ProductNotFound": "Product not found!",
     "Errors:WarhouseNotFound": "Warehouse not found!",
     "Errors:BatchNotFound": "Batch not found!",
-    "Errors:DrugstoreNotFound": "Drugstore not found!"
+    "Errors:DrugstoreNotFound": "Drugstore not found!",
+    "Menu:Drugstores": "Drugstores",
+    "Menu:Products": "Products",
+    "Menu:Warehouses": "Warehouses"
   }
 }

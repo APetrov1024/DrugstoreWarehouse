@@ -10,6 +10,8 @@ namespace DrugstoreWarehouse.Web.Menus;
 
 public class DrugstoreWarehouseMenuContributor : IMenuContributor
 {
+    private int _order = 0;
+
     public async Task ConfigureMenuAsync(MenuConfigurationContext context)
     {
         if (context.Menu.Name == StandardMenus.Main)
@@ -23,14 +25,45 @@ public class DrugstoreWarehouseMenuContributor : IMenuContributor
         var administration = context.Menu.GetAdministration();
         var l = context.GetLocalizer<DrugstoreWarehouseResource>();
 
+        //context.Menu.Items.Insert(
+        //    0,
+        //    new ApplicationMenuItem(
+        //        DrugstoreWarehouseMenus.Home,
+        //        l["Menu:Home"],
+        //        "~/",
+        //        icon: "fas fa-home",
+        //        order: 0
+        //    )
+        //);
+
         context.Menu.Items.Insert(
             0,
             new ApplicationMenuItem(
-                DrugstoreWarehouseMenus.Home,
-                l["Menu:Home"],
-                "~/",
-                icon: "fas fa-home",
-                order: 0
+                DrugstoreWarehouseMenus.Drugstores,
+                l[LocalizerKeys.Menu.Drugstores],
+                "~/Drugstores/Drugstores",
+                icon: "fas fa-clinic-medical",
+                order: _order++
+            )
+        );
+        context.Menu.Items.Insert(
+            0,
+            new ApplicationMenuItem(
+                DrugstoreWarehouseMenus.Warehouses,
+                l[LocalizerKeys.Menu.Warehouses],
+                "~/Warehouses/Warehouses",
+                icon: "fas fa-warehouse",
+                order: _order++
+            )
+        );
+        context.Menu.Items.Insert(
+            0,
+            new ApplicationMenuItem(
+                DrugstoreWarehouseMenus.Products,
+                l[LocalizerKeys.Menu.Products],
+                "~/Products/Products",
+                icon: "fas fa-pills",
+                order: _order++
             )
         );
 
