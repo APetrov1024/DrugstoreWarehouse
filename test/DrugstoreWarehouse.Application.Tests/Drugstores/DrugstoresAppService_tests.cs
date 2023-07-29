@@ -1,4 +1,6 @@
-﻿using DrugstoreWarehouse.Products;
+﻿using DrugstoreWarehouse.Batches;
+using DrugstoreWarehouse.Products;
+using DrugstoreWarehouse.Warehouses;
 using Shouldly;
 using System;
 using System.Collections.Generic;
@@ -16,11 +18,15 @@ namespace DrugstoreWarehouse.Drugstores
     {
         private readonly IDrugstoresAppService _drugstoreAppService;
         private readonly IRepository<Drugstore, Guid> _drugstoresRepository;
+        private readonly IRepository<Warehouse, Guid> _warehousesRepository;
+        private readonly IRepository<Batch, Guid> _batchesRepository;
 
         public DrugstoresAppService_tests()
         {
             _drugstoreAppService = GetRequiredService<IDrugstoresAppService>();
             _drugstoresRepository = GetRequiredService<IRepository<Drugstore, Guid>>();
+            _warehousesRepository = GetRequiredService<IRepository<Warehouse, Guid>>();
+            _batchesRepository = GetRequiredService<IRepository<Batch, Guid>>();
         }
 
         [Fact]
@@ -150,6 +156,22 @@ namespace DrugstoreWarehouse.Drugstores
 
             //assert
             drugstore.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task Should_Delete_Warehouses_And_Batches()
+        {
+            //init
+            var drugstore1 = await _drugstoresRepository.GetAsync(x => x.Name == TestConsts.InitialData.Drugstores.Drugstore1.Name);
+
+            //act
+            await _drugstoreAppService.DeleteAsync(drugstore1.Id);
+            var warehouses = await _warehousesRepository.GetListAsync(x => x.DrugstoreId == drugstore1.Id);
+            var batches = await _batchesRepository.GetListAsync();
+
+            //assert
+            warehouses.Count.ShouldBe(0);
+            batches.Count.ShouldBe(1);
         }
 
 

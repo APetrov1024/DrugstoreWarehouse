@@ -9,6 +9,8 @@ using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using DrugstoreWarehouse.Localization;
 using Volo.Abp.ObjectMapping;
+using DrugstoreWarehouse.Batches;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DrugstoreWarehouse.Warehouses
 {
@@ -16,13 +18,16 @@ namespace DrugstoreWarehouse.Warehouses
     {
         private readonly IRepository<Warehouse, Guid> _warehousesRepository;
         private readonly IRepository<Drugstore, Guid> _drugstoresRepository;
+        private readonly IRepository<Batch, Guid> _batchesRepository;
 
         public WarehousesAppService(
             IRepository<Warehouse, Guid> warehousesRepository,
-            IRepository<Drugstore, Guid> drugstoresRepository)
+            IRepository<Drugstore, Guid> drugstoresRepository,
+            IRepository<Batch, Guid> batchesRepository)
         {
             _warehousesRepository = warehousesRepository;
             _drugstoresRepository = drugstoresRepository;
+            _batchesRepository = batchesRepository;
         }
 
         public async Task<WarehouseDto> GetAsync(Guid id)
@@ -80,8 +85,17 @@ namespace DrugstoreWarehouse.Warehouses
 
         public async Task DeleteAsync(Guid id)
         {
-            await _warehousesRepository.DeleteAsync(id);
+            var query = (await _warehousesRepository.WithDetailsAsync(x => x.Batches))
+                .Where(x => x.Id == id);
+            var warehouse = await AsyncExecuter.SingleOrDefaultAsync(query);
+            if (warehouse != null)
+            {
+                await _batchesRepository.DeleteManyAsync(warehouse.Batches);
+                await _warehousesRepository.DeleteAsync(warehouse);
+            }
         }
+
+
 
     }
 }

@@ -93,7 +93,7 @@ public class DrugstoreWarehouseDbContext :
                 "Batches", 
                 t => t.HasCheckConstraint("CK_Batches_Quantity_Range", $"\"Quantity\" >= {BatchConsts.MinQuantity} AND \"Quantity\" <= {BatchConsts.MaxQuantity}")
                 );
-            b.HasOne(x => x.Product).WithMany().HasForeignKey(x => x.ProductId).OnDelete(DeleteBehavior.Cascade); 
+            b.HasOne(x => x.Product).WithMany(x => x.Batches).HasForeignKey(x => x.ProductId).OnDelete(DeleteBehavior.NoAction); 
         });
 
         builder.Entity<Drugstore>(b =>
@@ -102,7 +102,7 @@ public class DrugstoreWarehouseDbContext :
             b.Property(x => x.Name).HasMaxLength(DrugstoreConsts.MaxNameLength).IsRequired();
             b.Property(x => x.Address).HasMaxLength(DrugstoreConsts.MaxAdressLength).IsRequired();
             b.Property(x => x.TelNumber).HasMaxLength(DrugstoreConsts.MaxTelNumberLength).IsRequired();
-            b.HasMany(x => x.Warehouses).WithOne(y => y.Drugstore).HasForeignKey(y => y.DrugstoreId).OnDelete(DeleteBehavior.Cascade);
+            b.HasMany(x => x.Warehouses).WithOne(y => y.Drugstore).HasForeignKey(y => y.DrugstoreId).OnDelete(DeleteBehavior.NoAction);
         });
 
         builder.Entity<Product>(b =>
@@ -115,7 +115,7 @@ public class DrugstoreWarehouseDbContext :
         {
             b.ToTable("Warehouses");
             b.Property(x => x.Name).HasMaxLength(WarehouseConsts.MaxNameLength).IsRequired();
-            b.HasMany(x => x.Batches).WithOne(y => y.Warehouse).HasForeignKey(y => y.WarehouseId).OnDelete(DeleteBehavior.Cascade); 
+            b.HasMany(x => x.Batches).WithOne(y => y.Warehouse).HasForeignKey(y => y.WarehouseId).OnDelete(DeleteBehavior.NoAction); 
         });
 
 

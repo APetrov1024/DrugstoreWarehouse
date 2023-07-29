@@ -1,4 +1,5 @@
-﻿using Shouldly;
+﻿using DrugstoreWarehouse.Batches;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,14 @@ namespace DrugstoreWarehouse.Products
     {
         private readonly IProductsAppService _productsAppService;
         private readonly IRepository<Product, Guid> _productsRepository;
+        private readonly IRepository<Batch, Guid> _batchesRepository;
 
         public ProductsAppService_Tests()
         {
             _productsAppService = GetRequiredService<IProductsAppService>();
             _productsRepository = GetRequiredService<IRepository<Product, Guid>>();
+            _batchesRepository = GetRequiredService<IRepository<Batch, Guid>>();
+
         }
 
         [Fact]
@@ -140,6 +144,20 @@ namespace DrugstoreWarehouse.Products
             product.ShouldBeNull();
         }
 
+
+        [Fact]
+        public async Task Should_Delete_Batches()
+        {
+            //init
+            var product1 = await _productsRepository.GetAsync(x => x.Name == TestConsts.InitialData.Products.Product1.Name);
+
+            //act
+            await _productsAppService.DeleteAsync(product1.Id);
+            var batches = await _batchesRepository.GetListAsync(x => x.ProductId == product1.Id);
+
+            //assert
+            batches.Count.ShouldBe(0);
+        }
 
     }
 }

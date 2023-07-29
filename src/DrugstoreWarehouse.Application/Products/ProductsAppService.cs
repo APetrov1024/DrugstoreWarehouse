@@ -1,4 +1,5 @@
-﻿using DrugstoreWarehouse.Localization;
+﻿using DrugstoreWarehouse.Batches;
+using DrugstoreWarehouse.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,14 @@ namespace DrugstoreWarehouse.Products
     public class ProductsAppService: DrugstoreWarehouseAppService, IProductsAppService
     {
         private readonly IRepository<Product, Guid> _productsRepository;
+        private readonly IRepository<Batch, Guid> _batchesRepository;
 
-        public ProductsAppService(IRepository<Product, Guid> productsRepository)
+        public ProductsAppService(
+            IRepository<Product, Guid> productsRepository,
+            IRepository<Batch, Guid> batchesRepository)
         {
             _productsRepository = productsRepository;
+            _batchesRepository = batchesRepository;
         }
 
         public async Task<ProductDto> GetAsync(Guid id)
@@ -61,8 +66,15 @@ namespace DrugstoreWarehouse.Products
         }
 
         public async Task DeleteAsync(Guid id)
-        { 
-            await _productsRepository.DeleteAsync(id);
+        {
+            var query = (await _productsRepository.WithDetailsAsync(x => x.Batches))
+                .Where(x => x.Id == id);
+            var product = await AsyncExecuter.SingleOrDefaultAsync(query);
+            if (product != null)
+            {
+                await _batchesRepository.DeleteManyAsync(product.Batches);
+                await _productsRepository.DeleteAsync(product);
+            }
         }
 
     }

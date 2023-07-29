@@ -9,16 +9,25 @@ using Volo.Abp.Domain.Repositories;
 using DrugstoreWarehouse.Localization;
 using Volo.Abp.ObjectMapping;
 using DrugstoreWarehouse.Products;
+using DrugstoreWarehouse.Batches;
+using DrugstoreWarehouse.Warehouses;
 
 namespace DrugstoreWarehouse.Drugstores
 {
     public class DrugstoresAppService: DrugstoreWarehouseAppService, IDrugstoresAppService
     {
         private readonly IRepository<Drugstore, Guid> _drugstoresRepository;
+        private readonly IRepository<Warehouse, Guid> _warehousesRepository;
+        private readonly IRepository<Batch, Guid> _batchesRepository;
 
-        public DrugstoresAppService(IRepository<Drugstore, Guid> drugstoresRepository)
+        public DrugstoresAppService(
+            IRepository<Drugstore, Guid> drugstoresRepository,
+            IRepository<Warehouse, Guid> warehousesRepository,
+            IRepository<Batch, Guid> batchesRepository)
         {
             _drugstoresRepository = drugstoresRepository;
+            _warehousesRepository = warehousesRepository;
+            _batchesRepository = batchesRepository;
         }
 
         public async Task<DrugstoreDto> GetAsync(Guid id)
@@ -80,7 +89,17 @@ namespace DrugstoreWarehouse.Drugstores
 
         public async Task DeleteAsync(Guid id)
         {
-            await _drugstoresRepository.DeleteAsync(id);
+            var drugstoreQuery = (await _drugstoresRepository.WithDetailsAsync(x => x.Warehouses))
+                .Where(x => x.Id == id);
+            var drugstore = await AsyncExecuter.SingleOrDefaultAsync(drugstoreQuery);
+            if (drugstore != null)
+            { 
+                var warehouseIds = drugstore.Warehouses.Select(x => x.Id).Distinct();
+                var batches = await _batchesRepository.GetListAsync(x => warehouseIds.Contains(x.WarehouseId));
+                await _batchesRepository.DeleteManyAsync(batches);
+                await _warehousesRepository.DeleteManyAsync(drugstore.Warehouses);
+                await _drugstoresRepository.DeleteAsync(drugstore);
+            }
         }
 
 

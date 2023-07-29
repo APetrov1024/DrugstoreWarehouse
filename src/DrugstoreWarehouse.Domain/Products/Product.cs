@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrugstoreWarehouse.Batches;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace DrugstoreWarehouse.Products
     public class Product: FullAuditedEntity<Guid>
     {
         public string Name { get; set; } = string.Empty;
+        public List<Batch> Batches { get; set; } = new List<Batch>();
     }
 }

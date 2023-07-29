@@ -1,4 +1,5 @@
-﻿using DrugstoreWarehouse.Drugstores;
+﻿using DrugstoreWarehouse.Batches;
+using DrugstoreWarehouse.Drugstores;
 using Shouldly;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using Volo.Abp;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Validation;
 using Xunit;
+using static DrugstoreWarehouse.TestConsts.InitialData.Products;
 
 namespace DrugstoreWarehouse.Warehouses
 {
@@ -17,12 +19,14 @@ namespace DrugstoreWarehouse.Warehouses
         private readonly IWarehousesAppService _warehousesAppService;
         private readonly IRepository<Warehouse, Guid> _warehousesRepository;
         private readonly IRepository<Drugstore, Guid> _drugstoresRepository;
+        private readonly IRepository<Batch, Guid> _batchesRepository;
 
         public WarehousesAppService_tests()
         {
             _warehousesAppService = GetRequiredService<IWarehousesAppService>();
             _warehousesRepository = GetRequiredService<IRepository<Warehouse, Guid>>();
             _drugstoresRepository = GetRequiredService<IRepository<Drugstore, Guid>>();
+            _batchesRepository = GetRequiredService<IRepository<Batch, Guid>>();
         }
 
         [Fact]
@@ -163,6 +167,20 @@ namespace DrugstoreWarehouse.Warehouses
 
             //assert
             warehouse.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task Should_Delete_Batches()
+        {
+            //init
+            var warehouse1 = await _warehousesRepository.GetAsync(x => x.Name == TestConsts.InitialData.Warehouses.Warehouse1.Name);
+
+            //act
+            await _warehousesAppService.DeleteAsync(warehouse1.Id);
+            var batches = await _batchesRepository.GetListAsync(x => x.WarehouseId == warehouse1.Id);
+
+            //assert
+            batches.Count.ShouldBe(0);
         }
 
     }
