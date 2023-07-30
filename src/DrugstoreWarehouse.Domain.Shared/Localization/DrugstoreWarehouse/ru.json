@@ -2,10 +2,13 @@
   "culture": "ru",
   "texts": {
     "Menu:Home": "Главная",
-    "Errors:ProductNotFound": "Товар не найден!",
-    "Errors:WarhouseNotFound": "Склад не найден!",
-    "Errors:BatchNotFound": "Партия не найдена!",
-    "Errors:DrugstoreNotFound": "Аптека не найдена!",
+    "Errors:EntityNotFound:Product": "Товар не найден!",
+    "Errors:EntityNotFound:Warhouse": "Склад не найден!",
+    "Errors:EntityNotFound:Batch": "Партия не найдена!",
+    "Errors:EntityNotFound:Drugstore": "Аптека не найдена!",
+    
+    "Errors:FieldEmpty:Name": "Поле \"Имя\" не заполнено!",
+
     "Menu:Drugstores": "Аптеки",
     "Menu:Products": "Товары",
     "Menu:Warehouses": "Склады"

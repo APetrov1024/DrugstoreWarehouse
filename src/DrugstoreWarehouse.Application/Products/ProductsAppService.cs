@@ -33,13 +33,13 @@ namespace DrugstoreWarehouse.Products
             }
             catch (EntityNotFoundException ex)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.ProductNotFound], innerException: ex);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Product], innerException: ex);
             }
         }
 
         public async Task<List<ProductDto>> GetListAsync()
         { 
-            var products = await _productsRepository.GetListAsync();
+            var products = (await _productsRepository.GetListAsync()).OrderBy(x => x.Name).ToList();
             return ObjectMapper.Map<List<Product>, List<ProductDto>>(products);
         }
 
@@ -61,7 +61,7 @@ namespace DrugstoreWarehouse.Products
             }
             catch (EntityNotFoundException ex)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.ProductNotFound], innerException: ex);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Product], innerException: ex);
             }
         }
 

@@ -47,7 +47,7 @@ namespace DrugstoreWarehouse.Batches
             var batch = await AsyncExecuter.SingleOrDefaultAsync(query);
             if (batch == null && throwNotFound)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.BatchNotFound]);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Batch]);
             }
             return batch;
         }
@@ -73,7 +73,7 @@ namespace DrugstoreWarehouse.Batches
             var result = await _warehousesRepository.AnyAsync(x => x.Id == warehouseId);
             if (!result && throwNotFound)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.WarehouseNotFound]);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Warehouse]);
             }
             return result;
         }
@@ -83,7 +83,7 @@ namespace DrugstoreWarehouse.Batches
             var result = await _productsRepository.AnyAsync(x => x.Id == productId);
             if (!result && throwNotFound)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.ProductNotFound]);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Product]);
             }
             return result;
         }
@@ -113,7 +113,7 @@ namespace DrugstoreWarehouse.Batches
             }
             catch (EntityNotFoundException ex)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.BatchNotFound], innerException: ex);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Batch], innerException: ex);
             }
         }
 

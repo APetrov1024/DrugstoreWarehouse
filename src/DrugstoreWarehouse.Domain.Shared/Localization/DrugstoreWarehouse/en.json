@@ -2,10 +2,13 @@
   "culture": "en",
   "texts": {
     "Menu:Home": "Home",
-    "Errors:ProductNotFound": "Product not found!",
-    "Errors:WarhouseNotFound": "Warehouse not found!",
-    "Errors:BatchNotFound": "Batch not found!",
-    "Errors:DrugstoreNotFound": "Drugstore not found!",
+    "Errors:EntityNotFound:Product": "Product not found!",
+    "Errors:EntityNotFound:Warhouse": "Warehouse not found!",
+    "Errors:EntityNotFound:Batch": "Batch not found!",
+    "Errors:EntityNotFound:Drugstore": "Drugstore not found!",
+
+    "Errors:FieldEmpty:Name": "Field \"Name\" is empty!",
+
     "Menu:Drugstores": "Drugstores",
     "Menu:Products": "Products",
     "Menu:Warehouses": "Warehouses"

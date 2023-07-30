@@ -9,10 +9,21 @@ namespace DrugstoreWarehouse.Localization
         public static class Errors
         {
             public const string Prefix = "Errors";
-            public const string ProductNotFound = Prefix + ":ProductNotFound";
-            public const string WarehouseNotFound = Prefix + ":WarhouseNotFound";
-            public const string BatchNotFound = Prefix + ":BatchNotFound";
-            public const string DrugstoreNotFound = Prefix + ":DrugstoreNotFound";
+
+            public static class EntityNotFound
+            {
+                public const string Prefix = Errors.Prefix + ":EntityNotFound";
+                public const string Product = Prefix + ":Product";
+                public const string Warehouse = Prefix + ":Warhouse";
+                public const string Batch = Prefix + ":Batch";
+                public const string Drugstore = Prefix + ":Drugstore";
+            }
+
+            public static class FieldEmpty
+            {
+                public const string Prefix = Errors.Prefix + ":FieldEmpty";
+                public const string Name = Prefix + ":Name";
+            }
         }
         public static class Menu
         {
@@ -20,7 +31,6 @@ namespace DrugstoreWarehouse.Localization
             public const string Drugstores = Prefix + ":Drugstores";
             public const string Products = Prefix + ":Products";
             public const string Warehouses = Prefix + ":Warehouses";
-
         }
 
 

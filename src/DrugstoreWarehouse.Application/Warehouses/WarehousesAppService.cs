@@ -39,7 +39,7 @@ namespace DrugstoreWarehouse.Warehouses
             }
             catch (EntityNotFoundException ex)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.WarehouseNotFound], innerException: ex);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Warehouse], innerException: ex);
             }
         }
 
@@ -54,7 +54,7 @@ namespace DrugstoreWarehouse.Warehouses
             var result = await _drugstoresRepository.AnyAsync(x => x.Id == drugstoreId);
             if (!result && throwNotFound)
             { 
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.DrugstoreNotFound]);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Drugstore]);
             }
             return result;
         }
@@ -79,7 +79,7 @@ namespace DrugstoreWarehouse.Warehouses
             }
             catch (EntityNotFoundException ex)
             {
-                throw new UserFriendlyException(L[LocalizerKeys.Errors.DrugstoreNotFound], innerException: ex);
+                throw new UserFriendlyException(L[LocalizerKeys.Errors.EntityNotFound.Drugstore], innerException: ex);
             }
         }
 
