@@ -2,4 +2,39 @@
 @model DrugstoreWarehouse.Web.Pages.Warehouses.WarehousesModel
 @{
 }
-<h1>Warehouses</h1>
+@section styles 
+{
+    <abp-style-bundle name="@DrugstoreWarehouseBundles.Styles.TabulatorExtended"></abp-style-bundle>
+    <abp-style-bundle name="@DrugstoreWarehouseBundles.Styles.MasterDetails"></abp-style-bundle>
+}
+@section scripts 
+{
+    <abp-script-bundle name="@DrugstoreWarehouseBundles.Scripts.TabulatorExtended"></abp-script-bundle>
+    <abp-script-bundle name="@DrugstoreWarehouseBundles.Scripts.MasterDetails"></abp-script-bundle>
+    <abp-script src="/Pages/Products/CreateUpdateWarehouseModal.js"></abp-script>
+}
+
+@section page_header
+{
+    @L[LocalizerKeys.Menu.Warehouses]
+}
+
+
+@section content_toolbar
+{
+    <button type="button" class="btn btn-sm btn-primary" id="addBtn">Новая партия</button>
+    <button type="button" class="btn btn-sm btn-primary" id="addBtn">Новый склад</button>
+}
+<div class="d-flex">
+    <div class="master-details__master-list-container">
+        <div class="list-group">
+            @foreach(var wh in Model.Warehouses)
+            {
+                <a href="#" class="list-group-item list-group-item-action .master-details__master-list-item" data-id="@wh.Id">@wh.Name</a>
+            }
+        </div>
+    </div>
+    <div class="master-details__details-container">
+        <div id="batchesTable"></div>
+    </div>
+</div>

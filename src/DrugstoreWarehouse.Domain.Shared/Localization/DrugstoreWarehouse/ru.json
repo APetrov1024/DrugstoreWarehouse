@@ -2,6 +2,7 @@
   "culture": "ru",
   "texts": {
     "Menu:Home": "Главная",
+    "Errors:DrugstoresNotExits": "Не найдено ни одной аптеки. Необходимо сначала создать аптеку.",
     "Errors:EntityNotFound:Product": "Товар не найден!",
     "Errors:EntityNotFound:Warhouse": "Склад не найден!",
     "Errors:EntityNotFound:Batch": "Партия не найдена!",

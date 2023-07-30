@@ -11,6 +11,7 @@ namespace DrugstoreWarehouse.Localization
         {
             public const string Prefix = "Errors";
 
+            public const string DrugstoresNotExists = Prefix + ":DrugstoresNotExists";
             public static class EntityNotFound
             {
                 public const string Prefix = Errors.Prefix + ":EntityNotFound";

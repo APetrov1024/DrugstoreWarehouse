@@ -2,6 +2,7 @@
   "culture": "en",
   "texts": {
     "Menu:Home": "Home",
+    "Errors:DrugstoresNotExits": "No drugstores found. You must first create a drugstore .",
     "Errors:EntityNotFound:Product": "Product not found!",
     "Errors:EntityNotFound:Warhouse": "Warehouse not found!",
     "Errors:EntityNotFound:Batch": "Batch not found!",

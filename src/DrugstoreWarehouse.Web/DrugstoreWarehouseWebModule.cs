@@ -141,6 +141,20 @@ public class DrugstoreWarehouseWebModule : AbpModule
                     bundle.AddFiles("/libs/tabulator-tables/js/tabulator.min.js");
                 }
             );
+            options.StyleBundles.Add(
+                DrugstoreWarehouseBundles.Styles.MasterDetails,
+                bundle =>
+                {
+                    bundle.AddFiles("/css/MasterDetails.css");
+                }
+            );
+            options.ScriptBundles.Add(
+                DrugstoreWarehouseBundles.Scripts.MasterDetails,
+                bundle =>
+                {
+                    bundle.AddFiles("/js/MasterDetails.js");
+                }
+            );
         });
     }
 
