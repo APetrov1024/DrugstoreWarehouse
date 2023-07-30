@@ -6,11 +6,20 @@
     "Errors:EntityNotFound:Warhouse": "Склад не найден!",
     "Errors:EntityNotFound:Batch": "Партия не найдена!",
     "Errors:EntityNotFound:Drugstore": "Аптека не найдена!",
-    
+
     "Errors:FieldEmpty:Name": "Поле \"Имя\" не заполнено!",
 
     "Menu:Drugstores": "Аптеки",
     "Menu:Products": "Товары",
-    "Menu:Warehouses": "Склады"
+    "Menu:Warehouses": "Склады",
+
+    "FieldName:Product:Name": "Наименование",
+
+    "Message:Common:SuccessfullyDone": "Успешно выполнено",
+    "Message:Common:Error": "Ошибка!",
+
+    "Message:Product:DeleteConfirmHeader": "Вы уверены?",
+    "Message:Product:DeleteConfirmMessage": "Вы уверены, что хотите удалить товар?"
+
   }
 }

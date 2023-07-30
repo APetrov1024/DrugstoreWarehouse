@@ -1,5 +1,27 @@
 ﻿@page
+@using DrugstoreWarehouse.Web;
 @model DrugstoreWarehouse.Web.Pages.Products.ProductsModel
 @{
 }
-<h1>Products</h1>
+
+@section styles {
+    <abp-style-bundle name="@DrugstoreWarehouseBundles.Styles.TabulatorExtended"></abp-style-bundle>
+}
+@section scripts {
+    <abp-script-bundle name="@DrugstoreWarehouseBundles.Scripts.TabulatorExtended"></abp-script-bundle>
+    <abp-script src="/Pages/Products/CreateUpdateProductModal.js"></abp-script>
+    <abp-script src="/Pages/Products/Products.js"></abp-script>
+}
+
+@section page_header
+{
+    @L[LocalizerKeys.Menu.Products]
+}
+
+
+@section content_toolbar
+{
+    <button type="button" class="btn btn-sm btn-primary" id="addBtn">Добавить</button>
+}
+<div id="productsTable"></div>
+

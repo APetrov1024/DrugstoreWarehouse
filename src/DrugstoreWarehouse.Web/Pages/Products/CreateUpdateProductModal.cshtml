@@ -1,0 +1,16 @@
+﻿@page
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model DrugstoreWarehouse.Web.Pages.Products.CreateUpdateProductModalModel
+@{
+    Layout = null;
+    var caption = Model.VM.ProductId.HasValue ? "Новый товар" : "Редактирование товара";
+}
+
+<abp-modal size="Large">
+    <abp-modal-header title="@caption"></abp-modal-header>
+    <abp-modal-body>
+        <abp-input asp-for="@Model.VM.ProductId"></abp-input>
+        <abp-input asp-for="@Model.VM.Name"></abp-input>
+    </abp-modal-body>
+    <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+</abp-modal>

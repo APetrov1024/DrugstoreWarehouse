@@ -11,6 +11,16 @@
 
     "Menu:Drugstores": "Drugstores",
     "Menu:Products": "Products",
-    "Menu:Warehouses": "Warehouses"
+    "Menu:Warehouses": "Warehouses",
+
+    "FieldName:Product:Name": "Name",
+
+    "Message:Common:SuccessfullyDone": "Successfully done",
+    "Message:Common:Error": "Error!",
+
+    "Message:Product:DeleteConfirmHeader": "Are you sure?",
+    "Message:Product:DeleteConfirmMessage": "Are you sure you want to delete the product?"
+
+
   }
 }

@@ -19,8 +19,6 @@ using Volo.Abp.AspNetCore.Mvc.UI;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
@@ -37,6 +35,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 
 namespace DrugstoreWarehouse.Web;
 
@@ -48,8 +48,7 @@ namespace DrugstoreWarehouse.Web;
     typeof(AbpIdentityWebModule),
     typeof(AbpSettingManagementWebModule),
     typeof(AbpAccountWebOpenIddictModule),
-    typeof(AbpAspNetCoreMvcUiLeptonXLiteThemeModule),
-    typeof(AbpTenantManagementWebModule),
+    typeof(AbpAspNetCoreMvcUiBasicThemeModule),
     typeof(AbpAspNetCoreSerilogModule),
     typeof(AbpSwashbuckleModule)
     )]
@@ -113,10 +112,33 @@ public class DrugstoreWarehouseWebModule : AbpModule
         Configure<AbpBundlingOptions>(options =>
         {
             options.StyleBundles.Configure(
-                LeptonXLiteThemeBundles.Styles.Global,
+                BasicThemeBundles.Styles.Global,
                 bundle =>
                 {
                     bundle.AddFiles("/global-styles.css");
+                }
+            );
+            options.ScriptBundles.Configure(
+                BasicThemeBundles.Scripts.Global,
+                bundle =>
+                {
+                    bundle.AddFiles("/global-scripts.js");
+                }
+            );
+            options.StyleBundles.Add(
+                DrugstoreWarehouseBundles.Styles.TabulatorExtended,
+                bundle =>
+                {
+                    bundle.AddFiles("/css/TabulatorExtensions.css");
+                    bundle.AddFiles("/libs/tabulator-tables/css/tabulator.min.css");
+                }
+            );
+            options.ScriptBundles.Add(
+                DrugstoreWarehouseBundles.Scripts.TabulatorExtended,
+                bundle =>
+                {
+                    bundle.AddFiles("/js/TabulatorExtensions.js");
+                    bundle.AddFiles("/libs/tabulator-tables/js/tabulator.min.js");
                 }
             );
         });

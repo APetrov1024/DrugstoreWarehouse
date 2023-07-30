@@ -38,7 +38,7 @@ namespace DrugstoreWarehouse.Products
         }
 
         public async Task<List<ProductDto>> GetListAsync()
-        { 
+        {
             var products = (await _productsRepository.GetListAsync()).OrderBy(x => x.Name).ToList();
             return ObjectMapper.Map<List<Product>, List<ProductDto>>(products);
         }

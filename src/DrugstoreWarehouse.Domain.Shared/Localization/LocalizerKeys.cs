@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static DrugstoreWarehouse.Localization.LocalizerKeys;
 
 namespace DrugstoreWarehouse.Localization
 {
@@ -33,6 +34,35 @@ namespace DrugstoreWarehouse.Localization
             public const string Warehouses = Prefix + ":Warehouses";
         }
 
+        public static class FieldName
+        {
+            public const string Prefix = "FieldName";
+
+            public static class Product
+            {
+                public const string Prefix = FieldName.Prefix + ":Product";
+                public const string Name = Prefix + ":Name";
+            }
+        }
+
+        public static class Message
+        {
+            public const string Prefix = "Message";
+
+            public static class Common
+            {
+                public const string Prefix = Message.Prefix + ":Common";
+                public const string SuccessfullyDone = Prefix + ":SuccessfullyDone";
+                public const string Error = Prefix + ":Error";
+            }
+
+            public static class Product
+            {
+                public const string Prefix = Message.Prefix + ":Product";
+                public const string DeleteConfirmHeader = Prefix + ":DeleteConfirmHeader";
+                public const string DeleteConfirmMessage = Prefix + ":DeleteConfirmMessage";
+            }
+        }
 
     }
 }

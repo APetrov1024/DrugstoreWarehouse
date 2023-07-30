@@ -42,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\modules\Volo.BasicTheme\src\Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic\Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.csproj" />
     <ProjectReference Include="..\DrugstoreWarehouse.Application\DrugstoreWarehouse.Application.csproj" />
     <ProjectReference Include="..\DrugstoreWarehouse.HttpApi\DrugstoreWarehouse.HttpApi.csproj" />
     <ProjectReference Include="..\DrugstoreWarehouse.EntityFrameworkCore\DrugstoreWarehouse.EntityFrameworkCore.csproj" />
