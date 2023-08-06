@@ -4,6 +4,7 @@ using DrugstoreWarehouse.Products;
 using DrugstoreWarehouse.Warehouses;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Diagnostics;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -67,7 +68,12 @@ public class DrugstoreWarehouseDbContext :
     public DrugstoreWarehouseDbContext(DbContextOptions<DrugstoreWarehouseDbContext> options)
         : base(options)
     {
+        
+    }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    { 
+        optionsBuilder.LogTo(message => Debug.WriteLine(message));
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
