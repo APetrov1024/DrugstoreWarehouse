@@ -42,6 +42,19 @@ namespace DrugstoreWarehouse.Batches
         }
 
         [Fact]
+        public async Task Batches_Should_Contain_Product_Info()
+        {
+            //init 
+            var warehouse1 = await _warehousesRepository.GetAsync(x => x.Name == TestConsts.InitialData.Warehouses.Warehouse1.Name);
+            //act
+            var batches = await _batchesAppService.GetListAsync(warehouse1.Id);
+            var hasNullProduct = batches.Any(x => x.ProductName.IsNullOrWhiteSpace());
+
+            //assert
+            hasNullProduct.ShouldBeFalse();
+        }
+
+        [Fact]
         public async Task Initial_Data_Should_Contain_Batch1()
         {
             //init 

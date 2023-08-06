@@ -64,7 +64,7 @@ namespace DrugstoreWarehouse.Batches
         {
             var query = (await GetDetailedBatchQueryAsync())
                 .Where(x => x.WarehouseId == warehouseId);
-            var batches = await _batchesRepository.GetListAsync(x => x.WarehouseId == warehouseId);
+            var batches = await AsyncExecuter.ToListAsync(query);
             return ObjectMapper.Map<List<Batch>, List<BatchDto>>(batches);
         }
 
