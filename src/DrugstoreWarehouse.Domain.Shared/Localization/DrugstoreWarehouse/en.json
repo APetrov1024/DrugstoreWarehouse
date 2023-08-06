@@ -21,6 +21,11 @@
     "FieldName:Batch:ProductName": "Product",
     "FieldName:Batch:Quantity": "Quantity",
     "FieldName:Batch:WarehouseName": "Warehouse",
+    "FieldName:Drugstore:Name": "Name",
+    "FieldName:Drugstore:Address": "Address",
+    "FieldName:Drugstore:TelNumber": "Tel. number",
+    "FieldName:Drugstore:ProductName": "Product",
+    "FieldName:Drugstore:Quantity": "Quantity",
 
     "Message:Common:SuccessfullyDone": "Successfully done",
     "Message:Common:Error": "Error!",
@@ -32,11 +37,16 @@
     "Message:Batch:SelectWarehouse": "Select the warehouse",
     "Message:Warehouse:DeleteConfirmHeader": "Are you sure?",
     "Message:Warehouse:DeleteConfirmMessage": "Are you sure you want to delete the warehouse and all associated batches?",
+    "Message:Drugstore:DeleteConfirmHeader": "Are you sure?",
+    "Message:Drugstore:DeleteConfirmMessage": "Are you sure you want to delete the drugstore and all associated warehouses and batches?",
+    "Message:Drugstore:SelectDrugstore": "Select the drugstore",
 
     "ModalCaptions:CreateUpdateBatch:Create": "New batch",
     "ModalCaptions:CreateUpdateBatch:Edit": "Edit batch",
     "ModalCaptions:CreateUpdateWarehouse:Create": "New warehouse",
     "ModalCaptions:CreateUpdateWarehouse:Edit": "Edit warehouse",
+    "ModalCaptions:CreateUpdateDrugstore:Create": "New drugstore",
+    "ModalCaptions:CreateUpdateDrugstore:Edit": "Edit drugstore",
 
     "Buttons:Add": "Add",
     "Buttons:AddWarehouse": "Add warehouse",

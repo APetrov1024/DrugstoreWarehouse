@@ -1,6 +1,6 @@
 ﻿@page
 @using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
-@model DrugstoreWarehouse.Web.Pages.Warehouses.CreateUpdateWarehouseModalModel
+@model DrugstoreWarehouse.Web.Pages.Drugstores.CreateUpdateDrugstoreModalModel
 @{
     Layout = null;
 }
@@ -8,9 +8,10 @@
 <abp-modal size="Large">
     <abp-modal-header title="@Model.VM.ModalCaption"></abp-modal-header>
     <abp-modal-body>
-        <abp-input asp-for="@Model.VM.WarehouseId"></abp-input>
+        <abp-input asp-for="@Model.VM.DrugstoreId"></abp-input>
         <abp-input asp-for="@Model.VM.Name"></abp-input>
-        <abp-select asp-for="@Model.VM.DrugstoreId" asp-items="@Model.VM.Drugstores"></abp-select>
+        <abp-input asp-for="@Model.VM.Address"></abp-input>
+        <abp-input asp-for="@Model.VM.TelNumber"></abp-input>
     </abp-modal-body>
     <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
 </abp-modal>

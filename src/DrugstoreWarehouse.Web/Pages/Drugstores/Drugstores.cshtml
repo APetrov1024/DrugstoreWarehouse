@@ -2,4 +2,48 @@
 @model DrugstoreWarehouse.Web.Pages.Drugstores.DrugstoresModel
 @{
 }
-<h1>Drugstores</h1>
+@section styles
+    {
+    <abp-style-bundle name="@DrugstoreWarehouseBundles.Styles.TabulatorExtended"></abp-style-bundle>
+    <abp-style-bundle name="@DrugstoreWarehouseBundles.Styles.MasterDetails"></abp-style-bundle>
+}
+@section scripts
+    {
+    <abp-script-bundle name="@DrugstoreWarehouseBundles.Scripts.TabulatorExtended"></abp-script-bundle>
+    <abp-script-bundle name="@DrugstoreWarehouseBundles.Scripts.MasterDetails"></abp-script-bundle>
+    <abp-script src="/Pages/Drugstores/CreateUpdateDrugstoreModal.js"></abp-script>
+    <abp-script src="/Pages/Drugstores/Drugstores.js"></abp-script>
+}
+
+@section page_header
+    {
+    @L[LocalizerKeys.Menu.Drugstores]
+}
+
+
+@section content_toolbar
+    {
+    <button type="button" class="btn btn-sm btn-primary" id="addBtn">@L[LocalizerKeys.Buttons.Add]</button>
+}
+<div class="d-flex">
+    <div class="master-details__master-list-container">
+        <div class="list-group">
+            @foreach (var drugstore in Model.Drugstores)
+            {
+                <div class="list-group-item list-group-item-action master-details__master-list-item" data-id="@drugstore.Id">
+                    <span class="master-details__master-list-item__text">@drugstore.Name</span>
+                    <span class="master-details__master-list-item__toolbar">
+                        <span class="master-details__master-list-item__tool-btn  master-details__master-list-item__edit-btn"><i class="fas fa-edit"></i></span>
+                        <span class="master-details__master-list-item__tool-btn  master-details__master-list-item__delete-btn"><i class="fas fa-trash"></i></span>
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="master-details__details-container">
+        <div class="alert alert-info select-drugstore-alert" role="alert">
+            @L[LocalizerKeys.Message.Drugstore.SelectDrugstore]
+        </div>
+        <div id="productsTable"></div>
+    </div>
+</div>

@@ -61,6 +61,17 @@ namespace DrugstoreWarehouse.Localization
                 public const string Quantity = Prefix + ":Quantity";
                 public const string WarehouseName = Prefix + ":WarehouseName";
             }
+
+            public static class Drugstore
+            {
+                public const string Prefix = FieldName.Prefix + ":Drugstore";
+                public const string Name = Prefix + ":Name";
+                public const string Address = Prefix + ":Address";
+                public const string TelNumber = Prefix + ":TelNumber";
+                public const string ProductName = Prefix + ":ProductName";
+                public const string Quantity = Prefix + ":Quantity";
+            }
+
         }
 
         public static class Message
@@ -88,6 +99,14 @@ namespace DrugstoreWarehouse.Localization
                 public const string DeleteConfirmMessage = Prefix + ":DeleteConfirmMessage";
                 public const string SelectWarehouse = Prefix + ":SelectWarehouse";
             }
+
+            public static class Drugstore
+            {
+                public const string Prefix = Message.Prefix + ":Drugstore";
+                public const string DeleteConfirmHeader = Prefix + ":DeleteConfirmHeader";
+                public const string DeleteConfirmMessage = Prefix + ":DeleteConfirmMessage";
+                public const string SelectDrugstore = Prefix + ":SelectDrugstore";
+            }
         }
 
         public static class ModalCaptions
@@ -104,6 +123,13 @@ namespace DrugstoreWarehouse.Localization
             public static class CreateUpdateWarehouse
             {
                 public const string Prefix = ModalCaptions.Prefix + ":CreateUpdateWarehouse";
+                public const string Create = Prefix + ":Create";
+                public const string Edit = Prefix + ":Edit";
+            }
+
+            public static class CreateUpdateDrugstore
+            {
+                public const string Prefix = ModalCaptions.Prefix + ":CreateUpdateDrugstore";
                 public const string Create = Prefix + ":Create";
                 public const string Edit = Prefix + ":Edit";
             }
