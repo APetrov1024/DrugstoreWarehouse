@@ -12,3 +12,38 @@
     border: solid 1px rgb(222, 226, 230);
     border-radius: 5px;
 }
+
+.master-details__master-list-item__tool-btn {
+    width: 1.5em;
+    height: 1.5em;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 3px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+    .master-details__master-list-item__tool-btn:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .master-details__master-list-item__tool-btn i {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+.master-details__master-list-item {
+    display: flex;
+    justify-content:space-between;
+}
+
+    .master-details__master-list-item .master-details__master-list-item__toolbar {
+        display: none;
+    }
+
+    .master-details__master-list-item:hover .master-details__master-list-item__toolbar {
+        display: initial;
+    }

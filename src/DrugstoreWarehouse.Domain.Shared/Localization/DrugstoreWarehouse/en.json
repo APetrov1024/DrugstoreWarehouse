@@ -4,24 +4,43 @@
     "Menu:Home": "Home",
     "Errors:DrugstoresNotExits": "No drugstores found. You must first create a drugstore .",
     "Errors:EntityNotFound:Product": "Product not found!",
-    "Errors:EntityNotFound:Warhouse": "Warehouse not found!",
+    "Errors:EntityNotFound:Warehouse": "Warehouse not found!",
     "Errors:EntityNotFound:Batch": "Batch not found!",
     "Errors:EntityNotFound:Drugstore": "Drugstore not found!",
 
     "Errors:FieldEmpty:Name": "Field \"Name\" is empty!",
+    "Errors:FieldEmpty:Quantity_Int_Positive": "Field \"Quantity\" must be positive integer!",
 
     "Menu:Drugstores": "Drugstores",
     "Menu:Products": "Products",
     "Menu:Warehouses": "Warehouses",
 
     "FieldName:Product:Name": "Name",
+    "FieldName:Warehouse:Name": "Name",
+    "FieldName:Warehouse:DrugstoreName": "Drugstore",
+    "FieldName:Batch:ProductName": "Product",
+    "FieldName:Batch:Quantity": "Quantity",
+    "FieldName:Batch:WarehouseName": "Warehouse",
 
     "Message:Common:SuccessfullyDone": "Successfully done",
     "Message:Common:Error": "Error!",
 
     "Message:Product:DeleteConfirmHeader": "Are you sure?",
-    "Message:Product:DeleteConfirmMessage": "Are you sure you want to delete the product?"
+    "Message:Product:DeleteConfirmMessage": "Are you sure you want to delete the product?",
+    "Message:Batch:DeleteConfirmHeader": "Are you sure?",
+    "Message:Batch:DeleteConfirmMessage": "Are you sure you want to delete the batch?",
+    "Message:Batch:SelectWarehouse": "Select the warehouse",
+    "Message:Warehouse:DeleteConfirmHeader": "Are you sure?",
+    "Message:Warehouse:DeleteConfirmMessage": "Are you sure you want to delete the warehouse and all associated batches?",
 
+    "ModalCaptions:CreateUpdateBatch:Create": "New batch",
+    "ModalCaptions:CreateUpdateBatch:Edit": "Edit batch",
+    "ModalCaptions:CreateUpdateWarehouse:Create": "New warehouse",
+    "ModalCaptions:CreateUpdateWarehouse:Edit": "Edit warehouse",
+
+    "Buttons:Add": "Add",
+    "Buttons:AddWarehouse": "Add warehouse",
+    "Buttons:AddBatch": "Add batch"
 
   }
 }

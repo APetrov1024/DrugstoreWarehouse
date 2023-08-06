@@ -39,6 +39,7 @@ namespace DrugstoreWarehouse.Web.Pages.Warehouses
             VM = new CreateUpdateWarehouseModalVM
             {
                 WarehouseId = warehouseId,
+                ModalCaption = warehouseId.HasValue ? L[LocalizerKeys.ModalCaptions.CreateUpdateWarehouse.Edit] : L[LocalizerKeys.ModalCaptions.CreateUpdateWarehouse.Create],
                 Drugstores = drugstores
                     .Select(x => new SelectListItem(x.Name, x.Id.ToString()))
                     .ToList(),
@@ -58,12 +59,15 @@ namespace DrugstoreWarehouse.Web.Pages.Warehouses
         [HiddenInput]
         public Guid? WarehouseId { get; set; }
 
+        public string ModalCaption { get; set; } = string.Empty;
+
         [Required]
         [MaxLength(WarehouseConsts.MaxNameLength)]
-        [DisplayName(LocalizerKeys.FieldName.Product.Name)]
+        [DisplayName(LocalizerKeys.FieldName.Warehouse.Name)]
         public string Name { get; set; } = string.Empty;
 
         
+        [DisplayName(LocalizerKeys.FieldName.Warehouse.DrugstoreName)]
         public Guid DrugstoreId { get; set; }
         public List<SelectListItem> Drugstores { get; set; } = new List<SelectListItem>();
     }

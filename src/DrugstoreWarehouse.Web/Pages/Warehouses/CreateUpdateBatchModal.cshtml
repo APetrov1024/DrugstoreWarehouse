@@ -1,0 +1,17 @@
+﻿@page
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@model DrugstoreWarehouse.Web.Pages.Warehouses.CreateUpdateBatchModalModel
+@{
+    Layout = null;
+}
+
+<abp-modal size="Large">
+    <abp-modal-header title="@Model.VM.ModalCaption"></abp-modal-header>
+    <abp-modal-body>
+        <abp-input asp-for="@Model.VM.BatchId"></abp-input>
+        <abp-input asp-for="@Model.VM.WarehouseName" disabled></abp-input>
+        <abp-select asp-for="@Model.VM.ProductId" asp-items="@Model.VM.Products"></abp-select>
+        <abp-input asp-for="@Model.VM.Quantity"></abp-input>
+    </abp-modal-body>
+    <abp-modal-footer buttons="@AbpModalButtons.Save | @AbpModalButtons.Cancel"></abp-modal-footer>
+</abp-modal>

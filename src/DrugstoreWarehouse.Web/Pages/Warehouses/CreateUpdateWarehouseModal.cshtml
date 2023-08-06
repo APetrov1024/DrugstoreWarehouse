@@ -3,11 +3,11 @@
 @model DrugstoreWarehouse.Web.Pages.Warehouses.CreateUpdateWarehouseModalModel
 @{
     Layout = null;
-    var caption = Model.VM.WarehouseId.HasValue ? "Новый склад" : "Редактирование склада";
+    var caption = Model.VM.WarehouseId.HasValue ? L[LocalizerKeys.ModalCaptions.CreateUpdateBatch.Create] : L[LocalizerKeys.ModalCaptions.CreateUpdateBatch.Edit];
 }
 
 <abp-modal size="Large">
-    <abp-modal-header title="@caption"></abp-modal-header>
+    <abp-modal-header title="@Model.VM.ModalCaption"></abp-modal-header>
     <abp-modal-body>
         <abp-input asp-for="@Model.VM.WarehouseId"></abp-input>
         <abp-input asp-for="@Model.VM.Name"></abp-input>

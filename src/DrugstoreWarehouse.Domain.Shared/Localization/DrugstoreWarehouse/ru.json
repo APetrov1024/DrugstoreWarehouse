@@ -4,23 +4,43 @@
     "Menu:Home": "Главная",
     "Errors:DrugstoresNotExits": "Не найдено ни одной аптеки. Необходимо сначала создать аптеку.",
     "Errors:EntityNotFound:Product": "Товар не найден!",
-    "Errors:EntityNotFound:Warhouse": "Склад не найден!",
+    "Errors:EntityNotFound:Warehouse": "Склад не найден!",
     "Errors:EntityNotFound:Batch": "Партия не найдена!",
     "Errors:EntityNotFound:Drugstore": "Аптека не найдена!",
 
     "Errors:FieldEmpty:Name": "Поле \"Имя\" не заполнено!",
+    "Errors:FieldEmpty:Quantity_Int_Positive": "Поле \"Количество\" должно быть положительным целым числом!",
 
     "Menu:Drugstores": "Аптеки",
     "Menu:Products": "Товары",
     "Menu:Warehouses": "Склады",
 
     "FieldName:Product:Name": "Наименование",
+    "FieldName:Warehouse:Name": "Название",
+    "FieldName:Warehouse:DrugstoreName": "Аптека",
+    "FieldName:Batch:ProductName": "Товар",
+    "FieldName:Batch:Quantity": "Количество",
+    "FieldName:Batch:WarehouseName": "Склад",
 
     "Message:Common:SuccessfullyDone": "Успешно выполнено",
     "Message:Common:Error": "Ошибка!",
 
     "Message:Product:DeleteConfirmHeader": "Вы уверены?",
-    "Message:Product:DeleteConfirmMessage": "Вы уверены, что хотите удалить товар?"
+    "Message:Product:DeleteConfirmMessage": "Вы уверены, что хотите удалить товар?",
+    "Message:Batch:DeleteConfirmHeader": "Вы уверены?",
+    "Message:Batch:DeleteConfirmMessage": "Вы уверены, что хотите удалить партию?",
+    "Message:Batch:SelectWarehouse": "Выберите склад",
+    "Message:Warehouse:DeleteConfirmHeader": "Вы уверены?",
+    "Message:Warehouse:DeleteConfirmMessage": "Вы уверены, что хотите удалить склад и находящиеся на нем партии?",
+
+    "ModalCaptions:CreateUpdateBatch:Create": "Новая партия",
+    "ModalCaptions:CreateUpdateBatch:Edit": "Редактирование партии",
+    "ModalCaptions:CreateUpdateWarehouse:Create": "Новый склад",
+    "ModalCaptions:CreateUpdateWarehouse:Edit": "Редактирование склада",
+
+    "Buttons:Add": "Добавить",
+    "Buttons:AddWarehouse": "Новый склад",
+    "Buttons:AddBatch": "Новая партия"
 
   }
 }

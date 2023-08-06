@@ -13,18 +13,18 @@ abp.modals.CreateUpdateWarehouseModal = function () {
         function submitData(modalManager, warehouseId) {
             let dto = {
                 name: document.getElementById('VM_Name').value,
-                drugstoreId
+                drugstoreId: document.getElementById('VM_DrugstoreId').value,
             };
 
             if (validateDto(dto)) {
-                if (productId) {
+                if (warehouseId) {
                     warehousesAppService.update(warehouseId, dto)
-                        .done(response => onDataSubmited(response, modalManager))
+                        .done(response => onDataSubmited(response, modalManager, 'update'))
                         .catch(err => handleError(err));
                 }
                 else {
                     warehousesAppService.create(dto)
-                        .done(response => onDataSubmited(response, modalManager))
+                        .done(response => onDataSubmited(response, modalManager, 'create'))
                         .catch(err => handleError(err));
                 }
             }
@@ -38,9 +38,11 @@ abp.modals.CreateUpdateWarehouseModal = function () {
             return true;
         }
 
-        function onDataSubmited(result, modalManager) {
+        function onDataSubmited(response, modalManager, actionType) {
             abp.ui.clearBusy();
             abp.notify.success(L('Message:Common:SuccessfullyDone'));
+            const result = response;
+            result.actionType = actionType;
             modalManager.setResult(result);
             modalManager.close();
         }
