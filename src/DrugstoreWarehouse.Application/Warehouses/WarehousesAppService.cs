@@ -11,9 +11,12 @@ using DrugstoreWarehouse.Localization;
 using Volo.Abp.ObjectMapping;
 using DrugstoreWarehouse.Batches;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Authorization;
+using DrugstoreWarehouse.Permissions;
 
 namespace DrugstoreWarehouse.Warehouses
 {
+    [Authorize]
     public class WarehousesAppService: DrugstoreWarehouseAppService, IWarehousesAppService
     {
         private readonly IRepository<Warehouse, Guid> _warehousesRepository;
@@ -59,6 +62,7 @@ namespace DrugstoreWarehouse.Warehouses
             return result;
         }
 
+        [Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
         public async Task<WarehouseDto> CreateAsync(CreateUpdateWarehouseDto dto)
         {
             await CheckDrugstoreExists(dto.DrugstoreId);
@@ -67,6 +71,7 @@ namespace DrugstoreWarehouse.Warehouses
             return ObjectMapper.Map<Warehouse, WarehouseDto>(warehouse);
         }
 
+        [Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
         public async Task<WarehouseDto> UpdateAsync(Guid id, CreateUpdateWarehouseDto dto)
         {
             try
@@ -83,6 +88,7 @@ namespace DrugstoreWarehouse.Warehouses
             }
         }
 
+        [Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
         public async Task DeleteAsync(Guid id)
         {
             var query = (await _warehousesRepository.WithDetailsAsync(x => x.Batches))

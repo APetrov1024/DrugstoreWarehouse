@@ -8,9 +8,12 @@ using System.ComponentModel;
 using System;
 using DrugstoreWarehouse.Localization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using DrugstoreWarehouse.Permissions;
 
 namespace DrugstoreWarehouse.Web.Pages.Drugstores
 {
+    [Authorize(DrugstoreWarehousePermissions.Drugstores.Edit)]
     public class CreateUpdateDrugstoreModalModel : DrugstoreWarehousePageModel
     {
         private readonly IDrugstoresAppService _drugstoresAppService;

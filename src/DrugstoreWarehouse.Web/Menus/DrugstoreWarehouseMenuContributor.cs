@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DrugstoreWarehouse.Localization;
 using DrugstoreWarehouse.MultiTenancy;
+using DrugstoreWarehouse.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -43,7 +44,8 @@ public class DrugstoreWarehouseMenuContributor : IMenuContributor
                 l[LocalizerKeys.Menu.Drugstores],
                 "~/Drugstores/Drugstores",
                 icon: "fas fa-clinic-medical",
-                order: _order++
+                order: _order++,
+                requiredPermissionName: DrugstoreWarehousePermissions.Drugstores.View
             )
         );
         context.Menu.Items.Insert(
@@ -53,7 +55,8 @@ public class DrugstoreWarehouseMenuContributor : IMenuContributor
                 l[LocalizerKeys.Menu.Warehouses],
                 "~/Warehouses/Warehouses",
                 icon: "fas fa-warehouse",
-                order: _order++
+                order: _order++,
+                requiredPermissionName: DrugstoreWarehousePermissions.Warehouses.View
             )
         );
         context.Menu.Items.Insert(
@@ -63,7 +66,8 @@ public class DrugstoreWarehouseMenuContributor : IMenuContributor
                 l[LocalizerKeys.Menu.Products],
                 "~/Products/Products",
                 icon: "fas fa-pills",
-                order: _order++
+                order: _order++,
+                requiredPermissionName: DrugstoreWarehousePermissions.Products.View
             )
         );
 

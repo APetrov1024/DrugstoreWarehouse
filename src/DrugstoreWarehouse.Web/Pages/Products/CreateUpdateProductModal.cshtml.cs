@@ -1,5 +1,7 @@
 using DrugstoreWarehouse.Localization;
+using DrugstoreWarehouse.Permissions;
 using DrugstoreWarehouse.Products;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DrugstoreWarehouse.Web.Pages.Products
 {
+    [Authorize(DrugstoreWarehousePermissions.Products.Edit)]
     public class CreateUpdateProductModalModel : DrugstoreWarehousePageModel
     {
         private readonly IProductsAppService _productAppService;

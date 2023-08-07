@@ -3,6 +3,8 @@
 let productsTable = null;
 let selectedDrugstoreId = null;
 
+const readOnly = document.getElementById('ReadOnly')?.value === 'True';
+
 const drugstoresAppService = drugstoreWarehouse.drugstores.drugstores;
 
 const masterDetailsManager = new MasterDetailsManager({
@@ -14,6 +16,7 @@ const masterDetailsManager = new MasterDetailsManager({
         header: L('Message:Drugstore:DeleteConfirmHeader'),
         text: L('Message:Drugstore:DeleteConfirmMessage')
     },
+    readOnly: readOnly,
 });
 
 const createUpdateDrugstoreModal = new abp.ModalManager({
@@ -21,7 +24,7 @@ const createUpdateDrugstoreModal = new abp.ModalManager({
     modalClass: 'CreateUpdateDrugstoreModal'
 });
 
-document.getElementById('addBtn').addEventListener('click', function () {
+document.getElementById('addBtn')?.addEventListener('click', function () {
     createUpdateDrugstoreModal.open();
 });
 

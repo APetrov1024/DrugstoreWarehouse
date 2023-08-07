@@ -24,9 +24,16 @@
 
 @section content_toolbar
 {
-    <button type="button" class="btn btn-sm btn-primary" id="addBatchBtn" disabled>@L[LocalizerKeys.Buttons.AddBatch]</button>
-    <button type="button" class="btn btn-sm btn-primary" id="addWarehouseBtn">@L[LocalizerKeys.Buttons.AddWarehouse]</button>
+    @if (!Model.ReadOnly)
+    {
+        <button type="button" class="btn btn-sm btn-primary" id="addBatchBtn" disabled>@L[LocalizerKeys.Buttons.AddBatch]</button>
+        <button type="button" class="btn btn-sm btn-primary" id="addWarehouseBtn">@L[LocalizerKeys.Buttons.AddWarehouse]</button>
+    }
 }
+
+
+<abp-input asp-for="@Model.ReadOnly"></abp-input>
+
 <div class="d-flex">
     <div class="master-details__master-list-container">
         <div class="list-group">
@@ -35,8 +42,11 @@
                 <div class="list-group-item list-group-item-action master-details__master-list-item" data-id="@wh.Id">
                     <span class="master-details__master-list-item__text">@wh.Name</span>
                     <span class="master-details__master-list-item__toolbar">
-                        <span class="master-details__master-list-item__tool-btn  master-details__master-list-item__edit-btn"><i class="fas fa-edit"></i></span>
-                        <span class="master-details__master-list-item__tool-btn  master-details__master-list-item__delete-btn"><i class="fas fa-trash"></i></span>
+                        @if (!Model.ReadOnly)
+                        {
+                            <span class="master-details__master-list-item__tool-btn  master-details__master-list-item__edit-btn"><i class="fas fa-edit"></i></span>
+                            <span class="master-details__master-list-item__tool-btn  master-details__master-list-item__delete-btn"><i class="fas fa-trash"></i></span>
+                        }
                     </span>
                 </div>
             }

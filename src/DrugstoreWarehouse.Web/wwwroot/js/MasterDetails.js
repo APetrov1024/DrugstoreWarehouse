@@ -8,6 +8,7 @@ class MasterDetailsManager {
     #onDelete = (id, isActive) => { };
     #onClick = (id) => { };
     #onEditBtnClick = (id) => { };
+    #readOnly = false;
 
 
     constructor(options) {
@@ -30,6 +31,7 @@ class MasterDetailsManager {
         if (typeof (options.onClick) === 'function') this.#onClick = options.onClick;
         if (typeof (options.onDelete) === 'function') this.#onDelete = options.onDelete;
         if (typeof (options.onEditBtnClick) === 'function') this.#onEditBtnClick = options.onEditBtnClick;
+        this.#readOnly = !!(options.readOnly);
 
         this.#initExistingListItems();
     }
@@ -47,15 +49,21 @@ class MasterDetailsManager {
         item.classList.add('list-group-item', 'list-group-item-action', 'master-details__master-list-item')
         item.setAttribute('data-id', id);
         item.innerHTML = `<span class="master-details__master-list-item__text">${text}</span>
-                          <span class="master-details__master-list-item__toolbar">
-                              <span class="master-details__master-list-item__tool-btn master-details__master-list-item__edit-btn"><i class="fas fa-edit"></i></span>
-                              <span class="master-details__master-list-item__tool-btn master-details__master-list-item__delete-btn"><i class="fas fa-trash"></i></span>
-                          </span>`;
+                          <span class="master-details__master-list-item__toolbar">`
+        if (!this.#readOnly) {
+            item.innerHTML += `<span class="master-details__master-list-item__tool-btn master-details__master-list-item__edit-btn"><i class="fas fa-edit"></i></span>
+                              <span class="master-details__master-list-item__tool-btn master-details__master-list-item__delete-btn"><i class="fas fa-trash"></i></span>`;
+        }
+        item.innerHTML += `</span>`;
         this.#masterListElement.appendChild(item);
         return item;
     }
 
     add(id, text) {
+        if (this.#readOnly) {
+            console.warn('You are not allowed to perform this operation!')
+            return;
+        }
         const item = this.#renderItem(id, text);
         this.#masterListElement.appendChild(item);
         this.#addItemEventHandlers(item);
@@ -75,12 +83,12 @@ class MasterDetailsManager {
             this.#selectedId = id;
             this.#onClick(id);
         });
-        item.querySelector('.master-details__master-list-item__edit-btn').addEventListener('click', e => {
+        item.querySelector('.master-details__master-list-item__edit-btn')?.addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
             this.#onEditBtnClick(id)
         });
-        item.querySelector('.master-details__master-list-item__delete-btn').addEventListener('click', e => {
+        item.querySelector('.master-details__master-list-item__delete-btn')?.addEventListener('click', e => {
             e.preventDefault();
             e.stopPropagation();
             this.delete(id);
@@ -88,11 +96,19 @@ class MasterDetailsManager {
     }
 
     update(id, text) {
+        if (this.#readOnly) {
+            console.warn('You are not allowed to perform this operation!')
+            return;
+        }
         const item = this.#masterListElement.querySelector(`.master-details__master-list-item[data-id="${id}"]`);
         item.querySelector('.master-details__master-list-item__text').innerHTML = text;
     }
 
     delete(id) {
+        if (this.#readOnly) {
+            console.warn('You are not allowed to perform this operation!')
+            return;
+        }
         abp.message.confirm(this.#deleteConfirmationMessage.text, this.#deleteConfirmationMessage.header)
             .then(confirmed => {
                 if (confirmed) {

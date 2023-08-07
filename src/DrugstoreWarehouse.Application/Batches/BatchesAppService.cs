@@ -14,9 +14,12 @@ using DrugstoreWarehouse.Localization;
 using System.Web.Http;
 using Volo.Abp.ObjectMapping;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Authorization;
+using DrugstoreWarehouse.Permissions;
 
 namespace DrugstoreWarehouse.Batches
 {
+    [Microsoft.AspNetCore.Authorization.Authorize]
     public class BatchesAppService : DrugstoreWarehouseAppService, IBatchesAppService
     {
         private readonly IRepository<Batch, Guid> _batchesRepository;
@@ -88,6 +91,7 @@ namespace DrugstoreWarehouse.Batches
             return result;
         }
 
+        [Microsoft.AspNetCore.Authorization.Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
         public async Task<BatchDto> CreateAsync(CreateUpdateBatchDto dto)
         {
             await CheckProductExists(dto.ProductId);
@@ -98,6 +102,7 @@ namespace DrugstoreWarehouse.Batches
             return ObjectMapper.Map<Batch, BatchDto>(batch);
         }
 
+        [Microsoft.AspNetCore.Authorization.Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
         public async Task<BatchDto> UpdateAsync(Guid id, CreateUpdateBatchDto dto)
         {
             try
@@ -117,6 +122,7 @@ namespace DrugstoreWarehouse.Batches
             }
         }
 
+        [Microsoft.AspNetCore.Authorization.Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
         public async Task DeleteAsync(Guid id)
         {
             await _batchesRepository.DeleteAsync(id);

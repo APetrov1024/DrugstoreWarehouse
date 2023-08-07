@@ -11,9 +11,12 @@ using Volo.Abp.ObjectMapping;
 using DrugstoreWarehouse.Products;
 using DrugstoreWarehouse.Batches;
 using DrugstoreWarehouse.Warehouses;
+using Microsoft.AspNetCore.Authorization;
+using DrugstoreWarehouse.Permissions;
 
 namespace DrugstoreWarehouse.Drugstores
 {
+    [Authorize]
     public class DrugstoresAppService: DrugstoreWarehouseAppService, IDrugstoresAppService
     {
         private readonly IRepository<Drugstore, Guid> _drugstoresRepository;
@@ -65,6 +68,7 @@ namespace DrugstoreWarehouse.Drugstores
             return result;
         }
 
+        [Authorize(DrugstoreWarehousePermissions.Drugstores.Edit)]
         public async Task<DrugstoreDto> CreateAsync(CreateUpdateDrugstoreDto dto)
         {
             var drugstore = ObjectMapper.Map<CreateUpdateDrugstoreDto, Drugstore>(dto);
@@ -72,6 +76,7 @@ namespace DrugstoreWarehouse.Drugstores
             return ObjectMapper.Map<Drugstore, DrugstoreDto>(drugstore);
         }
 
+        [Authorize(DrugstoreWarehousePermissions.Drugstores.Edit)]
         public async Task<DrugstoreDto> UpdateAsync(Guid id, CreateUpdateDrugstoreDto dto)
         {
             try
@@ -87,6 +92,7 @@ namespace DrugstoreWarehouse.Drugstores
             }
         }
 
+        [Authorize(DrugstoreWarehousePermissions.Drugstores.Edit)]
         public async Task DeleteAsync(Guid id)
         {
             var drugstoreQuery = (await _drugstoresRepository.WithDetailsAsync(x => x.Warehouses))

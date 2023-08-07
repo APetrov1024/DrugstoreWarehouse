@@ -20,7 +20,14 @@
 
 @section content_toolbar
 {
-    <button type="button" class="btn btn-sm btn-primary" id="addBtn">@L[LocalizerKeys.Buttons.Add]</button>
+    @if (!Model.ReadOnly)
+    {
+        <button type="button" class="btn btn-sm btn-primary" id="addBtn">@L[LocalizerKeys.Buttons.Add]</button>
+    }
 }
+
+
+<abp-input asp-for="@Model.ReadOnly"></abp-input>
+
 <div id="productsTable"></div>
 

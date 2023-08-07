@@ -52,7 +52,17 @@
 
     "Buttons:Add": "Add",
     "Buttons:AddWarehouse": "Add warehouse",
-    "Buttons:AddBatch": "Add batch"
+    "Buttons:AddBatch": "Add batch",
+
+    "Permissions:Drugstores": "Drugstores",
+    "Permissions:Drugstores:View": "View",
+    "Permissions:Drugstores:Edit": "Edit",
+    "Permissions:Products": "Products",
+    "Permissions:Products:View": "View",
+    "Permissions:Products:Edit": "Edit",
+    "Permissions:Warehouses": "Warehouses",
+    "Permissions:Warehouses:View": "View",
+    "Permissions:Warehouses:Edit": "Edit"
 
   }
 }

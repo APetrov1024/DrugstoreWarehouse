@@ -3,6 +3,8 @@
 let batchesTable = null;
 let selectedWhId = null;
 
+const readOnly = document.getElementById('ReadOnly')?.value === 'True';
+
 const batchesAppService = drugstoreWarehouse.batches.batches;
 const warehousesAppService = drugstoreWarehouse.warehouses.warehouses;
 
@@ -15,6 +17,7 @@ const masterDetailsManager = new MasterDetailsManager({
         header: L('Message:Warehouse:DeleteConfirmHeader'),
         text: L('Message:Warehouse:DeleteConfirmMessage')
     },
+    readOnly: readOnly,
 });
 
 const createUpdateWarehouseModal = new abp.ModalManager({
@@ -27,11 +30,11 @@ const createUpdateBatchModal = new abp.ModalManager({
     modalClass: 'CreateUpdateBatchModal'
 });
 
-document.getElementById('addWarehouseBtn').addEventListener('click', function () {
+document.getElementById('addWarehouseBtn')?.addEventListener('click', function () {
     createUpdateWarehouseModal.open();
 });
 
-document.getElementById('addBatchBtn').addEventListener('click', function () {
+document.getElementById('addBatchBtn')?.addEventListener('click', function () {
     createUpdateBatchModal.open({ warehouseId: selectedWhId })
 });
 
@@ -53,7 +56,7 @@ function onDeleteWh(id, isActive) {
          batchesTable.destroy();
          batchesTable = null;
          document.querySelector('.select-wh-alert').classList.remove('hidden');
-         document.getElementById('addBatchBtn').setAttribute('disabled', true);
+         document.getElementById('addBatchBtn')?.setAttribute('disabled', true);
     }
 }
 
@@ -61,7 +64,7 @@ function onSelectWh(id) {
     selectedWhId = id;
     if (batchesTable === null) {
         // первоначальный выбор склада, инициализируем интерфейс для партий
-        document.getElementById('addBatchBtn').removeAttribute('disabled');
+        document.getElementById('addBatchBtn')?.removeAttribute('disabled');
         document.querySelector('.select-wh-alert').classList.add('hidden');
         createBatchesTable();
     }
@@ -69,15 +72,9 @@ function onSelectWh(id) {
 }
 
 function createBatchesTable() {
-    batchesTable = new Tabulator('#batchesTable', {
-        height: calculateContentHeight(),
-        layout: 'fitColumns',
-        ajaxURL: true,
-        ajaxRequestFunc: batchesQuery,
-        pagination: true,
-        paginationSize: 25,
-        paginationSizeSelector: [25, 50, 100, 250, 500, 999],
-        columns: [
+    const columns = [];
+    if (!readOnly) {
+        columns.push(
             new ToolsColumn(
                 [
                     { btnClass: 'btn-edit', iconClass: 'fas fa-edit' },
@@ -88,15 +85,28 @@ function createBatchesTable() {
                     'btn-delete': deleteBatchClicked
                 }
             ),
-            { title: L('FieldName:Batch:ProductName'), field: 'productName', headerFilter: 'input' },
-            { title: L('FieldName:Batch:Quantity'), field: 'quantity', headerFilter: 'number', width: '15%' },
-        ],
+        );
+    }
+    columns.push({ title: L('FieldName:Batch:ProductName'), field: 'productName', headerFilter: 'input' });
+    columns.push({ title: L('FieldName:Batch:Quantity'), field: 'quantity', headerFilter: 'number', width: '15%' });
+
+    batchesTable = new Tabulator('#batchesTable', {
+        height: calculateContentHeight(),
+        layout: 'fitColumns',
+        ajaxURL: true,
+        ajaxRequestFunc: batchesQuery,
+        pagination: true,
+        paginationSize: 25,
+        paginationSizeSelector: [25, 50, 100, 250, 500, 999],
+        columns: columns,
     });
 
-    batchesTable.on('rowDblClick', function (e, row) {
-        let rowData = row.getData();
-        createUpdateBatchModal.open({ warehouseId: selectedWhId, batchId: rowData.id })
-    });
+    if (!readOnly) {
+        batchesTable.on('rowDblClick', function (e, row) {
+            let rowData = row.getData();
+            createUpdateBatchModal.open({ warehouseId: selectedWhId, batchId: rowData.id })
+        });
+    }
 }
 
 function batchesQuery(url, config, params) {

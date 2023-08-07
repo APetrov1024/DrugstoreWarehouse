@@ -150,5 +150,31 @@ namespace DrugstoreWarehouse.Localization
             public const string AddWarehouse = Prefix + ":AddWarehouse";
             public const string AddBatch = Prefix + ":AddBatch";
         }
+
+        public static class Permissions
+        {
+            public const string Prefix = "Permissions";
+
+            public static class Drugstores
+            {
+                public const string Prefix = Permissions.Prefix + ":Drugstores";
+                public const string View = Prefix + ":View";
+                public const string Edit = Prefix + ":Edit";
+            }
+
+            public static class Products
+            {
+                public const string Prefix = Permissions.Prefix + ":Products";
+                public const string View = Prefix + ":View";
+                public const string Edit = Prefix + ":Edit";
+            }
+
+            public static class Warehouses
+            {
+                public const string Prefix = Permissions.Prefix + ":Warehouses";
+                public const string View = Prefix + ":View";
+                public const string Edit = Prefix + ":Edit";
+            }
+        }
     }
 }

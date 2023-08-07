@@ -11,9 +11,12 @@ using System.Collections.Generic;
 using DrugstoreWarehouse.Drugstores;
 using System.Linq;
 using Volo.Abp;
+using DrugstoreWarehouse.Permissions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DrugstoreWarehouse.Web.Pages.Warehouses
 {
+    [Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
     public class CreateUpdateWarehouseModalModel : DrugstoreWarehousePageModel
     {
         private readonly IWarehousesAppService _warehousesAppService;

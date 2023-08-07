@@ -1,12 +1,19 @@
+using DrugstoreWarehouse.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading.Tasks;
 
 namespace DrugstoreWarehouse.Web.Pages.Products
 {
-    public class ProductsModel : PageModel
+    [Authorize(DrugstoreWarehousePermissions.Products.View)]
+    public class ProductsModel : DrugstoreWarehousePageModel
     {
-        public void OnGet()
+        [HiddenInput]
+        public bool ReadOnly { get; set; }
+        public async Task OnGetAsync()
         {
+            ReadOnly = !(await AuthorizationService.IsGrantedAsync(DrugstoreWarehousePermissions.Products.Edit));
         }
     }
 }

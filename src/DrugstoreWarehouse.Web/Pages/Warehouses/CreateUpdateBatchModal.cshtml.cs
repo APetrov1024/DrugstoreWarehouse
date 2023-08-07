@@ -13,9 +13,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
+using DrugstoreWarehouse.Permissions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DrugstoreWarehouse.Web.Pages.Warehouses
 {
+    [Authorize(DrugstoreWarehousePermissions.Warehouses.Edit)]
     public class CreateUpdateBatchModalModel : DrugstoreWarehousePageModel
     {
 

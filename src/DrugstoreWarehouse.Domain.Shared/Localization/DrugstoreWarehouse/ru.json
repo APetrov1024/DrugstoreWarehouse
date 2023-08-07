@@ -52,7 +52,17 @@
 
     "Buttons:Add": "Добавить",
     "Buttons:AddWarehouse": "Новый склад",
-    "Buttons:AddBatch": "Новая партия"
+    "Buttons:AddBatch": "Новая партия",
+
+    "Permissions:Drugstores": "Аптеки",
+    "Permissions:Drugstores:View": "Просмотр",
+    "Permissions:Drugstores:Edit": "Редактирование",
+    "Permissions:Products": "Товары",
+    "Permissions:Products:View": "Просмотр",
+    "Permissions:Products:Edit": "Редактирование",
+    "Permissions:Warehouses": "Склады",
+    "Permissions:Warehouses:View": "Просмотр",
+    "Permissions:Warehouses:Edit": "Редактирование"
 
   }
 }
