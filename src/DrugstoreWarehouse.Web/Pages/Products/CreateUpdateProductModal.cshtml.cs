@@ -25,6 +25,7 @@ namespace DrugstoreWarehouse.Web.Pages.Products
             VM = new CreateUpdateProductModalVM
             {
                 ProductId = productId,
+                ModalCaption = productId.HasValue ? L[LocalizerKeys.ModalCaptions.CreateUpdateProduct.Edit] : L[LocalizerKeys.ModalCaptions.CreateUpdateProduct.Create],
             };
             if (productId.HasValue)
             { 
@@ -38,6 +39,8 @@ namespace DrugstoreWarehouse.Web.Pages.Products
     {
         [HiddenInput]
         public Guid? ProductId { get; set; }
+
+        public string ModalCaption { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(ProductConsts.MaxNameLength)]

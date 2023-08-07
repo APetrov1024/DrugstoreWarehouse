@@ -30,19 +30,19 @@ namespace DrugstoreWarehouse.Web.Pages.Drugstores
         private string StringifyDrugstore(DrugstoreDto drugstore)
         {
             var sb = new StringBuilder($"{drugstore.Name}");
-            if (drugstore.TelNumber != null || drugstore.Address != null)
+            if (!drugstore.TelNumber.IsNullOrWhiteSpace() || !drugstore.Address.IsNullOrWhiteSpace())
             {
                 sb.Append(" (");
             }
-            if (drugstore.TelNumber != null) 
+            if (!drugstore.TelNumber.IsNullOrWhiteSpace()) 
             {
                 sb.Append($"{drugstore.TelNumber}; ");
             }
-            if (drugstore.Address != null)
+            if (!drugstore.Address.IsNullOrWhiteSpace())
             {
                 sb.Append($"{drugstore.Address}");
             }
-            if (drugstore.TelNumber != null || drugstore.Address != null)
+            if (!drugstore.TelNumber.IsNullOrWhiteSpace() || !drugstore.Address.IsNullOrWhiteSpace())
             {
                 sb.Append(")");
             }

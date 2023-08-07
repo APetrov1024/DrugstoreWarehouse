@@ -133,6 +133,13 @@ namespace DrugstoreWarehouse.Localization
                 public const string Create = Prefix + ":Create";
                 public const string Edit = Prefix + ":Edit";
             }
+
+            public static class CreateUpdateProduct
+            {
+                public const string Prefix = ModalCaptions.Prefix + ":CreateUpdateProduct";
+                public const string Create = Prefix + ":Create";
+                public const string Edit = Prefix + ":Edit";
+            }
         }
 
         public static class Buttons

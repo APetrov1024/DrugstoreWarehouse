@@ -47,6 +47,8 @@
     "ModalCaptions:CreateUpdateWarehouse:Edit": "Edit warehouse",
     "ModalCaptions:CreateUpdateDrugstore:Create": "New drugstore",
     "ModalCaptions:CreateUpdateDrugstore:Edit": "Edit drugstore",
+    "ModalCaptions:CreateUpdateProduct:Create": "New product",
+    "ModalCaptions:CreateUpdateProduct:Edit": "Edit product",
 
     "Buttons:Add": "Add",
     "Buttons:AddWarehouse": "Add warehouse",

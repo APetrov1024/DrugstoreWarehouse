@@ -47,6 +47,8 @@
     "ModalCaptions:CreateUpdateWarehouse:Edit": "Редактирование склада",
     "ModalCaptions:CreateUpdateDrugstore:Create": "Новая аптека",
     "ModalCaptions:CreateUpdateDrugstore:Edit": "Редактирование аптеки",
+    "ModalCaptions:CreateUpdateProduct:Create": "Новый товар",
+    "ModalCaptions:CreateUpdateProduct:Edit": "Редактирование товара",
 
     "Buttons:Add": "Добавить",
     "Buttons:AddWarehouse": "Новый склад",
